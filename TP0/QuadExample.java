@@ -50,17 +50,99 @@ public class QuadExample {
         while (!Display.isCloseRequested()) {
             // Clear the screen and depth buffer
             GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);  
-         
+            GL11.glLoadIdentity();
+            
+            // GRAND carré
+                        
             // set the color of the quad (R,G,B,A)
-            GL11.glColor3f(0.5f,0.5f,1.0f);
-             
-            // draw quad
+            GL11.glColor3f(0.5f,1.5f,1.0f);
+            
+            GL11.glBegin(GL11.GL_QUADS);
+            GL11.glVertex2f(100,100);
+            GL11.glVertex2f(100+200+200,100);
+            GL11.glVertex2f(100+200+200,100+200+200);
+            GL11.glVertex2f(100,100+200+200);
+            GL11.glEnd();
+            
+            // Grand carré en lignes
+            // GL11.glColor3f(0.5f,0.5f,1.0f);
+            // GL11.glBegin(GL11.GL_LINES);
+            // GL11.glVertex2f(100,100);
+            // GL11.glVertex2f(100+200+200,100);
+            
+            // GL11.glVertex2f(100+200+200,100);
+            // GL11.glVertex2f(100+200+200,100+200+200);
+            
+            // GL11.glVertex2f(100+200+200,100+200+200);
+            // GL11.glVertex2f(100,100+200+200);
+            
+            // GL11.glVertex2f(100,100+200+200);
+            // GL11.glVertex2f(100,100);
+            
+            // GL11.glEnd();
+            
+            
+            // Petit carré vert
+            GL11.glTranslatef(400f, 0.0f, 0.0f); 
+            
+            GL11.glColor3f(0.5f,1.0f,0.5f);
             GL11.glBegin(GL11.GL_QUADS);
             GL11.glVertex2f(100,100);
             GL11.glVertex2f(100+200,100);
             GL11.glVertex2f(100+200,100+200);
             GL11.glVertex2f(100,100+200);
             GL11.glEnd();
+            
+            // Petit carré rose
+            GL11.glTranslatef(0.0f, 200f, 0.0f); 
+            
+            GL11.glColor3f(1.5f,0.5f,1.0f);
+            GL11.glBegin(GL11.GL_QUADS);
+            GL11.glVertex2f(100,100);
+            GL11.glVertex2f(100+200,100);
+            GL11.glVertex2f(100+200,100+200);
+            GL11.glVertex2f(100,100+200);
+            GL11.glEnd();
+            
+            // Remettre à zéro les translates
+            GL11.glLoadIdentity();
+            
+            // YEUX :
+            GL11.glTranslatef(50f, 250f, 0.0f); 
+            
+            GL11.glColor3f(0.2f,0.2f,0.2f);
+            GL11.glBegin(GL11.GL_QUADS);
+            GL11.glVertex2f(100,100);
+            GL11.glVertex2f(100+100,100);
+            GL11.glVertex2f(100+100,100+100);
+            GL11.glVertex2f(100,100+100);
+            GL11.glEnd();
+            
+            GL11.glTranslatef(200f, 0.0f, 0.0f); 
+            
+            GL11.glColor3f(0.2f,0.2f,0.2f);
+            GL11.glBegin(GL11.GL_QUADS);
+            GL11.glVertex2f(100,100);
+            GL11.glVertex2f(100+100,100);
+            GL11.glVertex2f(100+100,100+100);
+            GL11.glVertex2f(100,100+100);
+            GL11.glEnd();
+            
+            // NEZ
+            
+            GL11.glScaled(0.5f,0.5f,0.0f);
+            GL11.glTranslatef(-50f, -50f, 0.0f); 
+            
+            GL11.glColor3f(0.2f,0.2f,0.2f);
+            GL11.glBegin(GL11.GL_QUADS);
+            GL11.glVertex2f(100,100);
+            GL11.glVertex2f(100+100,100);
+            GL11.glVertex2f(100+100,100+100);
+            GL11.glVertex2f(100,100+100);
+            GL11.glEnd();
+            
+            
+            
   
             Display.update();
         }
