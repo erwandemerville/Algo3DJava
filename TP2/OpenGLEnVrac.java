@@ -50,12 +50,12 @@ public class OpenGLEnVrac {
     private float[] lightDiffuse = {0.5f,0.5f,0.5f,0.0f};
     private float[] lightSpecularComponent = {1.0f,1.0f,1.0f,0.0f};
     
-    private float quadratic_attenuation = 0.01f;
+    private float quadratic_attenuation = 0.0f;
     private float linear_attenuation = 0.0f;
     private float constant_attenuation = 1.0f;
 
     
-    private float[] lightPosition = {0.0f,0.0f,-7.0f,1.0f};
+    private float[] lightPosition = {0.0f,0.0f,-3.0f,1.0f}; // Position du spot
     
     
     private float[] no_mat = {0.0f, 0.0f, 0.0f, 1.0f};
@@ -65,7 +65,11 @@ public class OpenGLEnVrac {
     private float no_shininess = 0.0f;
     private float low_shininess = 5.0f;
     private float high_shininess = 100.0f;
-    private float[] mat_emission = {0.3f, 0.2f, 0.2f, 0.0f};    
+    private float[] mat_emission = {0.3f, 0.2f, 0.2f, 0.0f};  
+    
+    private float[] spotDirection = {1.5f, 0.0f, -5.0f, 1.0f}; // Direction d'éclairage du spot
+    private float spotCutoff = 19.0f;
+    private float spotExponent = 1.0f;
     
 
     private boolean filter = false;
@@ -242,8 +246,8 @@ public class OpenGLEnVrac {
         GL11.glVertex3f(-1.0f, 1.0f, -1.0f); // Top Left Of The Texture and Quad
         GL11.glEnd();
 
-        xrot += 0.001f; // X Axis Rotation (delta d'animation)
-        yrot += 0.02f; // Y Axis Rotation (delta d'animation)
+        xrot += 0.005f; // X Axis Rotation (delta d'animation)
+        yrot += 0.04f; // Y Axis Rotation (delta d'animation)
         zrot += 0.0f; // Z Axis Rotation (delta d'animation)
 
         GL11.glPopMatrix();        
@@ -378,6 +382,9 @@ public class OpenGLEnVrac {
         FloatBuffer buffSpecular = BufferUtils.createFloatBuffer(4).put(lightSpecularComponent);
         buffSpecular.position(0);
         
+        FloatBuffer buffSpotDirection = BufferUtils.createFloatBuffer(4).put(spotDirection);
+        buffSpotDirection.position(0);
+        
                 
         GL11.glLight(GL11.GL_LIGHT1, GL11.GL_AMBIENT, buffAmbient);
         GL11.glLight(GL11.GL_LIGHT1, GL11.GL_DIFFUSE, buffDiffuse);
@@ -387,7 +394,9 @@ public class OpenGLEnVrac {
         GL11.glLightf(GL11.GL_LIGHT1, GL11.GL_LINEAR_ATTENUATION, linear_attenuation);
         GL11.glLightf(GL11.GL_LIGHT1, GL11.GL_QUADRATIC_ATTENUATION, quadratic_attenuation);
 
-        
+        GL11.glLight(GL11.GL_LIGHT1, GL11.GL_SPOT_DIRECTION, buffSpotDirection);
+        GL11.glLightf(GL11.GL_LIGHT1, GL11.GL_SPOT_CUTOFF, spotCutoff);
+        GL11.glLightf(GL11.GL_LIGHT1, GL11.GL_SPOT_EXPONENT, spotExponent);
         
         GL11.glEnable(GL11.GL_LIGHT1);
         
