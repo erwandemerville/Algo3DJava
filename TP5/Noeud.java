@@ -1,5 +1,6 @@
 package TP5;
 
+import org.lwjgl.opengl.GL11;
 
 /**
  * Abstract class Noeud - write a description of the class here
@@ -9,8 +10,8 @@ package TP5;
  */
 public abstract class Noeud
 {
-    // instance variables - replace the example below with your own
-    private int x;
+    // Un noeu peut avoir plusieurs enfants
+    protected Vector<Noeud> m_enfants;
 
     /**
      * An example of a method - replace this comment with your own
